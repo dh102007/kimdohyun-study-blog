@@ -1,27 +1,82 @@
 export const metadata = {
   title: 'react notice board',
   description: 'react notice board',
+  image: '/img/main.png',
 };
 
-# sample content
+# REACT 게시판
 
-- One
-- Two
-- Three
-
-sample content
-
-sample code
-
-
-code
-
-## 프로젝트 미리보기
-
-<div className="w-[1200px] h-[700px] border rounded-xl overflow-hidden shadow-lg mx-auto">
-  <iframe
-    src="??"
-    className="w-full h-full border-0"
-    title="프로젝트 미리보기"
-  />
+<div className="flex flex-col space-y-2 text-blue-600 h-[30px] font-semibold">
+  <a href="http://3.34.177.110/" target="_blank" rel="noopener noreferrer">웹사이트 바로가기</a>
 </div>
+
+<div className="mt-2 text-gray-700">
+  게시글을 작성하고, 조회 , 수정 및 삭제할 수 있는 기능을 제공합니다.
+</div>
+
+<div className="border-b border-gray-300 my-4"></div>
+
+## 사용한 기술
+
+<ul className="list-disc pl-5 text-gray-800 space-y-1">
+  <li>React</li>
+  <li>Axios</li>
+  <li>Node.js</li>
+  <li>Express.js</li>
+  <li>MySQL</li>
+  <li>AWS(웹 배포)</li>
+</ul>
+
+## 참고한 글
+
+<div className="flex flex-col space-y-2 text-blue-600 font-medium mt-2">
+  <a href="https://sungt.tistory.com/20?category=1029329" target="_blank" rel="noopener noreferrer">
+    리액트, MYSQL로 간단하게 구현해보자
+  </a>
+  <a href="https://velog.io/@zofqofhtltm8015/Axios-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%84%9C%EB%B2%84-%ED%86%B5%EC%8B%A0-%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" rel="noopener noreferrer">
+     Axios 사용법, 서버 통신 해보기
+  </a>
+  <a href="https://velog.io/@yunsungyang-omc/React-React-App%EC%97%90%EC%84%9C-CORS-%EC%9D%B4%EC%8A%88-%ED%95%B4%EA%B2%B0%ED%95%98%EA%B8%B0" target="_blank" rel="noopener noreferrer">
+     React에서 CORS 에러 해결하기
+  </a>
+</div>
+
+<div className="border-b border-gray-300 my-4"></div>
+
+## 주요기능
+
+<div className="space-y-6 mt-4">
+
+  <div className="space-y-2">
+    ![메인 페이지](/img/main.png)
+    <div className="text-base  text-gray-800">
+      게시글 목록을 확인할 때는 GET /api/get 요청으로 모든 게시글 데이터를 불러오며, 서버는 이를 JSON 형태로 응답합니다. 클라이언트에서는 해당 데이터를 받아 화면에 렌더링합니다.
+    </div>
+  </div>
+
+  <div className="space-y-2">
+    ![글 작성 페이지](/img/min.png)
+    <div className="text-base  text-gray-800">
+      사용자가 클라이언트에서 게시글을 작성하면, 제목, 내용, 작성 날짜를 포함한 데이터를 POST /api/insert 엔드포인트로 서버에 전송합니다. 
+      서버는 이 데이터를 INSERT 쿼리를 통해 MySQL 데이터베이스의 kimawsdb 테이블에 저장합니다.
+    </div>
+  </div>
+
+  <div className="space-y-2">
+    ![글 수정 페이지](/img/sujun.png)
+    <div className="text-base text-gray-800">
+      특정 게시글을 수정하고자 할 때는 글 목록에서 해당 항목을 클릭하여 수정 페이지로 이동한 후, 수정된 제목과 내용, 
+      idx(식별자)를 PUT /api/update 엔드포인트로 전송합니다. 서버는 이를 기반으로 데이터베이스에서 업데이트합니다.
+    </div>
+  </div>
+
+  <div className="space-y-2">
+    ![글 삭제 페이지](/img/dlet.png)
+    <div className="text-base  text-gray-800">
+      게시글 삭제 기능은 DELETE /api/delete/:idx 엔드포인트를 통해 구현되었으며, 게시글 식별자 idx를 URL 파라미터로 받아 해당 게시글을 삭제합니다. 
+      삭제 요청이 완료되면 클라이언트는 자동으로 목록을 새로고침합니다.
+    </div>
+  </div>
+
+</div>
+
