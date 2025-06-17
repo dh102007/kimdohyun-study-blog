@@ -12,34 +12,47 @@ export default async function Home() {
       const slug = file.replace(/\.mdx$/, '');
       const mod = await import(`../content/${slug}.mdx`);
       return { slug, metadata: mod.metadata };
-    }),
+    })
   );
 
   return (
-    <div className='w-full flex flex-col items-center px-4 py-8'>
-      <div className='max-w-6xl w-full grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 grid'>
+    <div className="w-full min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post) => (
-          <div key={post.slug} className='border rounded-lg shadow-md'>
-            <Image
-              src={
-                post.metadata.image ||
-                `/posts/og-image?title=${encodeURIComponent(post.metadata.title)}`
-              }
-              alt={post.metadata.title}
-              className='w-full object-cover rounded-t-lg mb-4 aspect-[1200/630]'
-              width={1200}
-              height={630}
-            />
-            <div className='p-4'>
-              <h2 className='text-2xl font-bold mb-2'>
-                <Link href={`/posts/${post.slug}`}>{post.metadata.title}</Link>
-              </h2>
-              <p className='text-gray-600 mb-4'>{post.metadata.description}</p>
-              <Link
-                href={`/posts/${post.slug}`}
-                className='text-blue-500 hover:underline'>
-                Read more
-              </Link>
+          <div
+            key={post.slug}
+            className="bg-white rounded-3xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+          >
+            <div className="relative aspect-[1200/630] w-full">
+              <Image
+                src={
+                  post.metadata.image ||
+                  `/posts/og-image?title=${encodeURIComponent(post.metadata.title)}`
+                }
+                alt={post.metadata.title}
+                fill
+                className="object-cover rounded-t-3xl"
+              />
+            </div>
+            <div className="p-6 flex flex-col justify-between h-full">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors duration-200">
+                  <Link href={`/posts/${post.slug}`}>
+                    {post.metadata.title}
+                  </Link>
+                </h2>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {post.metadata.description}
+                </p>
+              </div>
+              <div>
+                <Link
+                  href={`/posts/${post.slug}`}
+                  className="inline-block px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-full hover:bg-blue-600 transition-colors"
+                >
+                  Read more →
+                </Link>
+              </div>
             </div>
           </div>
         ))}
