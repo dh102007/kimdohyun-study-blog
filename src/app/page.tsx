@@ -44,8 +44,7 @@ export default async function Home() {
               </p>
               <Link
                 href={`/posts/${post.slug}`}
-                className="text-sm font-medium text-blue-500 hover:underline"
-              >
+                className="text-sm font-medium text-blue-500 hover:underline">
                 Read more →
               </Link>
             </div>

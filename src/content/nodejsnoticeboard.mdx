@@ -1,27 +1,81 @@
 export const metadata = {
-  title: 'Node.js notice board',
-  description: 'notice board',
+  title: 'nodejs notice board',
+  description: 'nodejs notice board',
+  image: '/nodeimg/title.png',
 };
 
-# 프로젝트 개요 
+# Node.js 게시판
 
-- One
-- Two
-- Three
+<div className="flex flex-col space-y-2 text-blue-600 h-[30px] font-semibold">
+  <a href="http://3.34.177.110:3000/" target="_blank" rel="noopener noreferrer">웹사이트 바로가기</a>
+</div>
 
-sample content
+<div className="mt-2 text-gray-700">
+  게시글을 작성하고, 조회 , 수정 및 삭제할 수 있는 기능을 제공합니다.
+</div>
 
-sample code
+<div className="border-b border-gray-300 my-4"></div>
 
+## 사용한 기술
 
-code
+<ul className="list-disc pl-5 text-gray-800 space-y-1">
+  <li>Node.js</li>
+  <li>RESTful</li>
+  <li>AWS(리액트 배포 및 Node.js Express 배포)</li>
+</ul>
+<div className="border-b border-gray-300 my-4"></div>
 
-## 프로젝트 미리보기
+## 참고한 영상
 
-<div className="w-[1200px] h-[700px] border rounded-xl overflow-hidden shadow-lg mx-auto">
+<div className="flex flex-col space-y-2 text-blue-600 font-medium mt-2">
+  <a href="https://www.opentutorials.org/course/3332" target="_blank" rel="noopener noreferrer">
+    생활코딩 node.js 기본기를 익혀보자
+  </a>
+</div>
+
+<div className="border-b border-gray-300 my-4"></div>
+
+## 주요기능
+
+<div className="space-y-6 mt-4">
+
+  <div className="space-y-2">
+    ![메인 페이지](/nodeimg/nodemain.png)
+    <div className="text-base  text-gray-800">
+      게시글 목록을 확인할 때는 GET / 요청을 통해 서버가 fs.readdir로 ./data 디렉토리의 파일 목록을 불러오고, 이를 HTML 목록으로 변환해 클라이언트에 렌더링합니다.
+    </div>
+  </div>
+
+  <div className="space-y-2">
+    ![글 작성 페이지](/nodeimg/nodecreact.png)
+    <div className="text-base  text-gray-800">
+     사용자가 클라이언트에서 게시글을 작성하면, 제목과 내용을 입력한 후 POST /create_process 경로로 서버에 전송됩니다. 
+     서버는 이 데이터를 받아 fs.writeFile을 통해 파일 시스템의 ./data 디렉토리에 새로운 파일로 저장합니다. 이때 제목은 파일 이름으로, 본문 내용은 파일 내용으로 기록됩니다.
+    </div>
+  </div>
+
+  <div className="space-y-2">
+    ![글 수정 페이지](/nodeimg/nodedlet.png)
+    <div className="text-base text-gray-800">
+     특정 게시글을 수정하고자 할 경우, 사용자는 목록에서 해당 글을 선택한 뒤 GET /update?id=제목 요청을 통해 수정 폼 페이지로 이동합니다. 수정된 제목과 내용은 POST /update_process 요청으로 서버에 전달되며, 
+     서버는 기존 파일명을 새 제목으로 변경한 뒤 새로운 내용을 덮어씌웁니다.
+    </div>
+  </div>
+
+  <div className="space-y-2">
+    ![글 삭제 페이지](/nodeimg/nodedlet.png)
+    <div className="text-base  text-gray-800">
+      게시글 삭제 기능은 POST /delete_process 요청을 통해 처리되며, 서버는 전달받은 파일명을 기준으로 fs.unlink 함수를 사용해 해당 파일을 삭제합니다. 
+      삭제가 완료되면 클라이언트는 메인 페이지(/)로 리디렉션됩니다.
+    </div>
+  </div>
+  # 미리보기
+ <div className="w-[1200px] h-[700px] border rounded-xl overflow-hidden shadow-lg mx-auto">
   <iframe
     src="http://3.34.177.110:3000/"
     className="w-full h-full border-0 "
     title="프로젝트 미리보기"
   />
 </div>
+</div>
+
