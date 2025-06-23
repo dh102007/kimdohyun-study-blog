@@ -6,6 +6,14 @@ export default function Header() {
       <Link href='/' className='text-2xl font-bold'>
         KimDoHyun blog
       </Link>
+      <Link
+        href='https://github.com/dh102007/kimdohyun-study-blog' 
+        target='_blank'
+        rel='noopener noreferrer'
+        className='ml-auto text-base font-medium hover:underline'
+      >
+        GitHub
+      </Link>
     </header>
   );
 }

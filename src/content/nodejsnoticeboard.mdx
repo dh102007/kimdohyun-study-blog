@@ -1,73 +1,80 @@
 export const metadata = {
-  title: 'nodejs notice board',
-  description: 'nodejs notice board',
+  title: 'Node.js  Board',
+  description: 'Node.js 모듈을 이용한 파일 기반 게시판',
   image: '/nodeimg/title.png',
 };
 
-# Node.js 게시판
+#  Node.js 모듈을 사용한 게시판
 
 <div className="flex flex-col space-y-2 text-blue-600 h-[30px] font-semibold">
-  <a href="http://3.34.177.110:3000/" target="_blank" rel="noopener noreferrer">웹사이트 바로가기</a>
+  <a href="http://3.34.177.110:3000" target="_blank" rel="noopener noreferrer">웹사이트 바로가기</a>
 </div>
+
+<div className="border-b border-gray-300 my-4" />
 
 <div className="mt-2 text-gray-700">
-  게시글을 작성하고, 조회 , 수정 및 삭제할 수 있는 기능을 제공합니다.
+  Node.js에 있는 내부 모듈을 사용하여 만들었습니다.   게시글을 작성하고, 조회, 수정 및 삭제할 수 있는 기능을 제공합니다.
 </div>
 
-<div className="border-b border-gray-300 my-4"></div>
+<div className="border-b border-gray-300 my-4" />
 
-## 사용한 기술
+##  사용한 기술
 
 <ul className="list-disc pl-5 text-gray-800 space-y-1">
-  <li>Node.js</li>
-  <li>RESTful</li>
-  <li>AWS(배포)</li>
+  <li>querystring 모듈</li>
+  <li>http 모듈</li>
+  <li>fs 모듈</li>
+  <li>url 모듈</li>
+  <li>AWS EC2 (배포)</li>
 </ul>
-<div className="border-b border-gray-300 my-4"></div>
 
-## 참고한 영상
+<div className="border-b border-gray-300 my-4" />
+
+##  참고한 영상
 
 <div className="flex flex-col space-y-2 text-blue-600 font-medium mt-2">
   <a href="https://www.opentutorials.org/course/3332" target="_blank" rel="noopener noreferrer">
-    생활코딩 node.js 기본기를 익혀보자
+    생활코딩 - Node.js 기본기 익히기
   </a>
 </div>
 
-<div className="border-b border-gray-300 my-4"></div>
+<div className="border-b border-gray-300 my-4" />
 
-## 주요기능
+##  주요 기능
 
-<div className="space-y-6 mt-4">
-
+<div className="space-y-6 mt-4">  
   <div className="space-y-2">
     ![메인 페이지](/nodeimg/nodemain.png)
-    <div className="text-base  text-gray-800">
-      게시글 목록을 확인할 때는 GET / 요청을 통해 서버가 fs.readdir로 ./data 디렉토리의 파일 목록을 불러오고, 이를 HTML 목록으로 변환해 클라이언트에 렌더링합니다.
+    <div className="text-base text-gray-800">
+      게시글 목록은 GET / 요청을 통해 fs.readdir로 ./data 디렉토리의 파일 목록을 불러오고, 
+      이를 HTML 목록으로 변환해 클라이언트에 렌더링합니다.메인 페이지(GET /)에 접속하면 서버는 fs.readdir을 통해 ./data 디렉토리 내 모든 파일명을 가져옵니다. 
+      각 파일명은 게시글의 제목으로 간주되며, HTML 
+      &lt;ul&gt; 태그 형태로 동적으로 렌더링됩니다. 사용자는 목록에서 제목을 클릭해 해당 게시글의 상세 내용을 확인할 수 있습니다.
     </div>
   </div>
 
   <div className="space-y-2">
     ![글 작성 페이지](/nodeimg/nodecreact.png)
-    <div className="text-base  text-gray-800">
-     사용자가 클라이언트에서 게시글을 작성하면, 제목과 내용을 입력한 후 POST /create_process 경로로 서버에 전송됩니다. 
-     서버는 이 데이터를 받아 fs.writeFile을 통해 파일 시스템의 ./data 디렉토리에 새로운 파일로 저장합니다. 이때 제목은 파일 이름으로, 본문 내용은 파일 내용으로 기록됩니다.
-    </div>
-  </div>
-
-  <div className="space-y-2">
-    ![글 수정 페이지](/nodeimg/nodedlet.png)
     <div className="text-base text-gray-800">
-     특정 게시글을 수정하고자 할 경우, 사용자는 목록에서 해당 글을 선택한 뒤 GET /update?id=제목 요청을 통해 수정 폼 페이지로 이동합니다. 수정된 제목과 내용은 POST /update_process 요청으로 서버에 전달되며, 
-     서버는 기존 파일명을 새 제목으로 변경한 뒤 새로운 내용을 덮어씌웁니다.
+       사용자가 '글 작성하기' 버튼을 클릭하면 /create 경로의 글 작성 폼으로 이동합니다. 제목과 내용을 입력 후 제출하면, POST /create_process 요청으로 서버에 데이터가 전송됩니다. 
+       서버는 fs.writeFile을 이용해 해당 데이터를 ./data 폴더에 새 파일로 저장합니다. 저장된 파일의 이름은 제목이고, 파일의 내용은 작성한 본문이 됩니다
     </div>
   </div>
 
   <div className="space-y-2">
-    ![글 삭제 페이지](/nodeimg/nodedlet.png)
-    <div className="text-base  text-gray-800">
-      게시글 삭제 기능은 POST /delete_process 요청을 통해 처리되며, 서버는 전달받은 파일명을 기준으로 fs.unlink 함수를 사용해 해당 파일을 삭제합니다. 
-      삭제가 완료되면 클라이언트는 메인 페이지(/)로 리디렉션됩니다.
+    ![글 수정 페이지](/nodeimg/Editpost.png)
+    <div className="text-base text-gray-800">
+     사용자가 게시글 상세 페이지에서 '수정' 버튼을 클릭하면 /update?id=제목 경로로 이동합니다. 수정 폼에는 기존 제목과 내용이 미리 입력되어 있어 쉽게 수정할 수 있습니다. 수정 후 제출하면, 
+     서버는 POST /update_process 요청을 받아 fs.rename으로 파일명을 변경하고, fs.writeFile로 내용을 덮어씌웁니다. 제목까지 수정 가능하도록 구현되어 있습니다.
     </div>
   </div>
-</div>
 
+  <div className="space-y-2">
+    ![글 삭제 페이지](/nodeimg/dlet.png)
+    <div className="text-base text-gray-800">
+      상세 페이지에서 '삭제' 버튼을 클릭하면, POST /delete_process 요청이 서버로 전송됩니다. 삭제 버튼을 누르기 전에는 자바스크립트의 window.confirm 함수로 사용자에게 한 번 더 확인을 받습니다. 
+      서버는 fs.unlink를 사용하여 해당 파일(게시글)을 삭제하고, 삭제 후에는 메인 페이지(/)로 자동 이동됩니다.
+    </div>
+  </div>
+
+</div>  

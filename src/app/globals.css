@@ -1,1 +1,14 @@
 @import 'tailwindcss';
+
+
+
+@font-face {
+  font-family: 'Maplestory';
+  src: url('/font/MaplestoryBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Maplestory', sans-serif;
+}
